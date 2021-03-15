@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 # 원본이미지 사이즈 조절
-img = cv2.imread('3.jpg')
-img = cv2.resize(img, dsize=(0, 0), fx=0.1, fy=0.1, interpolation=cv2.INTER_LINEAR)
+img = cv2.imread('1.jpg')
+#img = cv2.resize(img, dsize=(0, 0), fx=0.1, fy=0.1, interpolation=cv2.INTER_LINEAR)
 height, width, channel = img.shape
 cv2.imshow('original', img)
 # 블러링
@@ -27,7 +27,7 @@ contours_dict = []
 
 for contour in contours:
     rect = cv2.minAreaRect(contour)
-    if rect[1][0] > 250 and (rect[1][0] // rect[1][1]) > 5:
+    if rect[1][0] > 600 and (rect[1][0] // rect[1][1]) > 5:
         box = cv2.boxPoints(rect)
         box = np.int0(box) 
         cv2.drawContours(temp_result, [box], -1, (0, 255, 0), 2)
