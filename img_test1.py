@@ -31,13 +31,16 @@ def draw_ContourBox(img, contours, min_width, min_ratio, height, width, channel)
     contours_dict = []
     for contour in contours:
         rect = cv2.minAreaRect(contour)
-        if rect[1][0] > min_width and (rect[1][0] // rect[1][1]) > min_ratio:
+        if max(rect[1][0], rect[1][1]) > min_width and max(rect[1][0]/rect[1][1], rect[1][1]/rect[1][0]) > min_ratio:
             box = cv2.boxPoints(rect)
             box = np.int0(box) 
             cv2.drawContours(temp_result, [box], -1, (0, 255, 0), 2)
+            
             print("==========================================================")
             print("(x, y) = ({0})\n(width, height) = {1}\n(angle) = {2}".format(rect[0], rect[1], rect[2]))
             print(box)
+
+        
             
     #cv2.imshow('result', temp_result)
     return temp_result
@@ -53,7 +56,7 @@ if __name__ == "__main__":
     cv2.imshow('img_binary', img_binary)
     contours, img_contour = draw_Contours(img_binary, height, width, channel)
     cv2.imshow('contours', img_contour)
-    img_contourBox = draw_ContourBox(img_contour, contours, 10, 2, height, width, channel)
+    img_contourBox = draw_ContourBox(img_contour, contours, 300, 3, height, width, channel)
     cv2.imshow('img_contourBox', img_contourBox)
 
     cv2.waitKey(0)
