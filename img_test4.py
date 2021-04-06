@@ -6,10 +6,10 @@ import time
 
 start = time.time()
 
-src = cv2.imread("11.jpg")
+src = cv2.imread("12.jpg")
 dst = src.copy()
 gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-canny = cv2.Canny(gray, 4000, 3500, apertureSize = 5, L2gradient = True)
+canny = cv2.Canny(gray, 5000, 1500, apertureSize = 5, L2gradient = True)
 lines = cv2.HoughLines(canny, 0.8, np.pi / 180, 150, srn = 100, stn = 200, min_theta = -20 * np.pi / 180, max_theta = 20 * np.pi / 180)
 
 rho_min = 1e9
