@@ -2,10 +2,8 @@ import numpy as np
 import cv2
 
 src = cv2.imread("11.jpg")
-dst = src.copy()
-gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-canny = cv2.Canny(gray, 4000, 3500, apertureSize = 5, L2gradient = True)
-lines = cv2.HoughLinesP(canny, 100, np.pi / 180, 0, minLineLength = 10, maxLineGap = 100)
+
+lines = cv2.HoughLinesP(canny, 0.8, np.pi / 180, 0, minLineLength = 10, maxLineGap = 100)
 
 angle_min = 1e9
 angle_max = 0
