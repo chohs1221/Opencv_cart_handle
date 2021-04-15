@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+# bgr -> hsv, mask
 def mask(bgr, low, high):
     hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
     low_color = np.array([low[0], low[1], low[2]])
